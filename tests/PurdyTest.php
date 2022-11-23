@@ -317,6 +317,26 @@ class PurdyTest extends TestCase
 				'value' => '33 1/3 Revolutions Per Monkee',
 				'expected' => '33 &frac13; Revolutions Per Monkee',
 			]],
+			[[
+				'value' => '1/3',
+				'expected' => '&frac13;',
+			]],
+			[[
+				'value' => '11/3',
+				'expected' => '11/3',
+			]],
+			[[
+				'value' => '1/33',
+				'expected' => '1/33',
+			]],
+			[[
+				'value' => '3/6',
+				'expected' => '3/6',
+			]],
+			[[
+				'value' => '1/2/3',
+				'expected' => '1/2/3',
+			]],
 		];
 	}
 

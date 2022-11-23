@@ -138,7 +138,27 @@ class Purdy
 	 */
 	public static function fractions(string $s) : string
 	{
-		$s = preg_replace('/([^0-9\/])([0-9])\/([0-9])([^0-9\/])/', '$1&frac$2$3;$4', $s);
+		$fractions = [
+			'1/2',
+			'1/3',
+			'1/4',
+			'1/5',
+			'1/6',
+			'1/8',
+			'2/3',
+			'2/5',
+			'3/4',
+			'3/5',
+			'3/8',
+			'4/5',
+			'5/6',
+			'5/8',
+			'7/8',
+		];
+		foreach ($fractions as $fraction) {
+			list($numerator, $denominator) = explode('/', $fraction);
+			$s = preg_replace('/(^|[^0-9\/])' . $numerator . '\/' . $denominator . '([^0-9\/]|$)/', '$1&frac' . $numerator . $denominator . ';$2', $s);
+		}
 		return $s;
 	}
 
