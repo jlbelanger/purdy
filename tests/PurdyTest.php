@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 class PurdyTest extends TestCase
 {
-	public function convertProvider() : array
+	public static function convertProvider() : array
 	{
 		return [
 			'open quote after mdash' => [[
@@ -178,7 +178,7 @@ class PurdyTest extends TestCase
 		$this->assertSame($args['expected'], $output);
 	}
 
-	public function ampersandsProvider() : array
+	public static function ampersandsProvider() : array
 	{
 		return [
 			[[
@@ -217,7 +217,7 @@ class PurdyTest extends TestCase
 		$this->assertSame($args['expected'], $output);
 	}
 
-	public function sizesProvider() : array
+	public static function sizesProvider() : array
 	{
 		return [
 			[[
@@ -252,7 +252,7 @@ class PurdyTest extends TestCase
 		$this->assertSame($args['expected'], $output);
 	}
 
-	public function singleQuotesProvider() : array
+	public static function singleQuotesProvider() : array
 	{
 		return [
 			'apostrophe at beginning of word' => [[
@@ -291,7 +291,7 @@ class PurdyTest extends TestCase
 		$this->assertSame($args['expected'], $output);
 	}
 
-	public function ellipsesProvider() : array
+	public static function ellipsesProvider() : array
 	{
 		return [
 			[[
@@ -310,7 +310,7 @@ class PurdyTest extends TestCase
 		$this->assertSame($args['expected'], $output);
 	}
 
-	public function fractionsProvider() : array
+	public static function fractionsProvider() : array
 	{
 		return [
 			[[
@@ -349,7 +349,7 @@ class PurdyTest extends TestCase
 		$this->assertSame($args['expected'], $output);
 	}
 
-	public function dashesProvider() : array
+	public static function dashesProvider() : array
 	{
 		return [
 			[[
@@ -388,7 +388,7 @@ class PurdyTest extends TestCase
 		$this->assertSame($args['expected'], $output);
 	}
 
-	public function quotesProvider() : array
+	public static function quotesProvider() : array
 	{
 		return [
 			'open quote after space' => [[
