@@ -3,6 +3,7 @@
 namespace Tests;
 
 use Jlbelanger\Purdy;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 class PurdyTest extends TestCase
@@ -169,9 +170,7 @@ class PurdyTest extends TestCase
 		];
 	}
 
-	/**
-	 * @dataProvider convertProvider
-	 */
+	#[DataProvider('convertProvider')]
 	public function testConvert(array $args) : void
 	{
 		$output = Purdy::convert($args['value']);
@@ -208,9 +207,7 @@ class PurdyTest extends TestCase
 		];
 	}
 
-	/**
-	 * @dataProvider ampersandsProvider
-	 */
+	#[DataProvider('ampersandsProvider')]
 	public function testAmpersands(array $args) : void
 	{
 		$output = Purdy::ampersands($args['value']);
@@ -243,9 +240,7 @@ class PurdyTest extends TestCase
 		];
 	}
 
-	/**
-	 * @dataProvider sizesProvider
-	 */
+	#[DataProvider('sizesProvider')]
 	public function testSizes(array $args) : void
 	{
 		$output = Purdy::sizes($args['value']);
@@ -282,9 +277,7 @@ class PurdyTest extends TestCase
 		];
 	}
 
-	/**
-	 * @dataProvider singleQuotesProvider
-	 */
+	#[DataProvider('singleQuotesProvider')]
 	public function testSingleQuotes(array $args) : void
 	{
 		$output = Purdy::singleQuotes($args['value']);
@@ -301,9 +294,7 @@ class PurdyTest extends TestCase
 		];
 	}
 
-	/**
-	 * @dataProvider ellipsesProvider
-	 */
+	#[DataProvider('ellipsesProvider')]
 	public function testEllipses(array $args) : void
 	{
 		$output = Purdy::ellipses($args['value']);
@@ -340,9 +331,7 @@ class PurdyTest extends TestCase
 		];
 	}
 
-	/**
-	 * @dataProvider fractionsProvider
-	 */
+	#[DataProvider('fractionsProvider')]
 	public function testFractions(array $args) : void
 	{
 		$output = Purdy::fractions($args['value']);
@@ -379,9 +368,7 @@ class PurdyTest extends TestCase
 		];
 	}
 
-	/**
-	 * @dataProvider dashesProvider
-	 */
+	#[DataProvider('dashesProvider')]
 	public function testDashes(array $args) : void
 	{
 		$output = Purdy::dashes($args['value']);
@@ -490,9 +477,7 @@ class PurdyTest extends TestCase
 		];
 	}
 
-	/**
-	 * @dataProvider quotesProvider
-	 */
+	#[DataProvider('quotesProvider')]
 	public function testQuotes(array $args) : void
 	{
 		$output = Purdy::quotes($args['value']);
