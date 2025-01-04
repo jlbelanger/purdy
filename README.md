@@ -16,7 +16,7 @@ Purdy is a Composer package that adds HTML entities to text to make it look purd
 
 ## Requirements
 
-- PHP 7.4+
+- PHP 8.4+
 - [Composer](https://getcomposer.org/)
 
 ## Install
