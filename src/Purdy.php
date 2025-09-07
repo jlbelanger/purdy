@@ -30,7 +30,7 @@ class Purdy
 
 	/**
 	 * @param  string $s
-	 * @return array
+	 * @return array{tokens: array<string, string>, value: string}
 	 */
 	public static function replaceTagsWithTokens(string $s) : array
 	{
@@ -51,8 +51,8 @@ class Purdy
 	}
 
 	/**
-	 * @param  array  $tokens
-	 * @param  string $s
+	 * @param  array<string, string> $tokens
+	 * @param  string                $s
 	 * @return string
 	 */
 	public static function replaceTokensWithTags(array $tokens, string $s) : string
@@ -78,7 +78,7 @@ class Purdy
 				$s = str_replace($match, '%ampersand_token_' . $i . '%', $s);
 			}
 		}
-		$s = preg_replace('/&(?![A-Za-z0-9]+;)/', '&amp;', $s);
+		$s = preg_replace('/&(?![A-Za-z0-9]+;)/', '&amp;', $s) ?? $s;
 		if (!empty($matches[0])) {
 			foreach ($matches[0] as $i => $match) {
 				$s = str_replace('%ampersand_token_' . $i . '%', $match, $s);
@@ -94,10 +94,10 @@ class Purdy
 	 */
 	public static function sizes(string $s) : string
 	{
-		$s = preg_replace('/(\d+)" x (\d+)"/', '$1&quot; &times; $2&quot;', $s);
-		$s = preg_replace('/(\d+)&quot; x (\d+)&quot;/', '$1&quot; &times; $2&quot;', $s);
-		$s = preg_replace('/(\d) x (\d)/', '$1 &times; $2', $s);
-		$s = preg_replace('/([0-9]+)\'([0-9]+)( [0-9]+\/[0-9]+)?"/', '$1&apos;$2$3&quot;', $s);
+		$s = preg_replace('/(\d+)" x (\d+)"/', '$1&quot; &times; $2&quot;', $s) ?? $s;
+		$s = preg_replace('/(\d+)&quot; x (\d+)&quot;/', '$1&quot; &times; $2&quot;', $s) ?? $s;
+		$s = preg_replace('/(\d) x (\d)/', '$1 &times; $2', $s) ?? $s;
+		$s = preg_replace('/([0-9]+)\'([0-9]+)( [0-9]+\/[0-9]+)?"/', '$1&apos;$2$3&quot;', $s) ?? $s;
 		return $s;
 	}
 
@@ -107,16 +107,16 @@ class Purdy
 	 */
 	public static function singleQuotes(string $s) : string
 	{
-		$s = preg_replace('/--\'([A-Z])/', '--&lsquo;$1', $s);
+		$s = preg_replace('/--\'([A-Z])/', '--&lsquo;$1', $s) ?? $s;
 		$s = preg_replace(
 			"/'([0-9]{2}'?s?|bout|cause|cept|cos|cuz|ello|em|im|lil|neath|round|scuse|til|till|tis|twas|tween)([ \"&<;,!\?\.\)\n-]|$)/i",
 			'&rsquo;$1$2',
 			$s
-		);
-		$s = preg_replace("/'n([ ';,!\?\.\)\n-]|$)/i", '&rsquo;n$1$2', $s);
-		$s = preg_replace("/(^|<p[^>]*>|\"| )'([^ ])/", '$1&lsquo;$2', $s);
+		) ?? $s;
+		$s = preg_replace("/'n([ ';,!\?\.\)\n-]|$)/i", '&rsquo;n$1$2', $s) ?? $s;
+		$s = preg_replace("/(^|<p[^>]*>|\"| )'([^ ])/", '$1&lsquo;$2', $s) ?? $s;
 		$s = str_replace("('", '(&lsquo;', $s);
-		$s = preg_replace('/<(a|b|cite|em|figcaption|h[1-6]|i|li|mark|span|strong|td)( [^>]+)?>\'/', '<$1$2>&lsquo;', $s);
+		$s = preg_replace('/<(a|b|cite|em|figcaption|h[1-6]|i|li|mark|span|strong|td)( [^>]+)?>\'/', '<$1$2>&lsquo;', $s) ?? $s;
 		$s = str_replace("'", '&rsquo;', $s);
 		return $s;
 	}
@@ -157,7 +157,11 @@ class Purdy
 		];
 		foreach ($fractions as $fraction) {
 			list($numerator, $denominator) = explode('/', $fraction);
-			$s = preg_replace('/(^|[^0-9\/])' . $numerator . '\/' . $denominator . '([^0-9\/]|$)/', '$1&frac' . $numerator . $denominator . ';$2', $s);
+			$s = preg_replace(
+				'/(^|[^0-9\/])' . $numerator . '\/' . $denominator . '([^0-9\/]|$)/',
+				'$1&frac' . $numerator . $denominator . ';$2',
+				$s
+			) ?? $s;
 		}
 		return $s;
 	}
@@ -169,15 +173,15 @@ class Purdy
 	public static function dashes(string $s) : string
 	{
 		$s = str_replace('- -', '-&nbsp;-', $s);
-		$s = preg_replace('/([^|-])--([^|-]|$)/', '$1&mdash;$2', $s);
+		$s = preg_replace('/([^|-])--([^|-]|$)/', '$1&mdash;$2', $s) ?? $s;
 		$s = str_replace('&mdash;".', '&mdash;&rdquo;.', $s);
 		$s = str_replace('&mdash;" ', '&mdash;&rdquo; ', $s);
 		$s = str_replace('&mdash;"]', '&mdash;&rdquo;]', $s);
 		$s = str_replace('&mdash;"' . "\n", '&mdash;&rdquo;' . "\n", $s);
 		$s = str_replace('&mdash;"</p>', '&mdash;&rdquo;</p>', $s);
-		$s = preg_replace('/&mdash;"$/', '&mdash;&rdquo;', $s);
+		$s = preg_replace('/&mdash;"$/', '&mdash;&rdquo;', $s) ?? $s;
 		$s = str_replace('&mdash;"', '&mdash;&ldquo;', $s);
-		$s = preg_replace('/(\d)-(\d+[^-])/', '$1&ndash;$2', $s);
+		$s = preg_replace('/(\d)-(\d+[^-])/', '$1&ndash;$2', $s) ?? $s;
 		return $s;
 	}
 
@@ -189,9 +193,9 @@ class Purdy
 	{
 		$s = str_replace(' -"', ' -&ldquo;', $s);
 		$s = str_replace('/"', '/&ldquo;', $s);
-		$s = preg_replace('/([ \n\(\[])"/', '$1&ldquo;', $s);
-		$s = preg_replace('/(^|<p[^>]*>|<a [^>]+>|<h[1-6][^>]*>|<br>|\|)"/', '$1&ldquo;', $s);
-		$s = preg_replace('/<(a|b|cite|em|figcaption|h[1-6]|i|li|mark|span|strong|td)( [^>]+)?>"/', '<$1$2>&ldquo;', $s);
+		$s = preg_replace('/([ \n\(\[])"/', '$1&ldquo;', $s) ?? $s;
+		$s = preg_replace('/(^|<p[^>]*>|<a [^>]+>|<h[1-6][^>]*>|<br>|\|)"/', '$1&ldquo;', $s) ?? $s;
+		$s = preg_replace('/<(a|b|cite|em|figcaption|h[1-6]|i|li|mark|span|strong|td)( [^>]+)?>"/', '<$1$2>&ldquo;', $s) ?? $s;
 		$s = str_replace('"', '&rdquo;', $s);
 		return $s;
 	}

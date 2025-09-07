@@ -8,6 +8,9 @@ use PHPUnit\Framework\TestCase;
 
 class PurdyTest extends TestCase
 {
+	/**
+	 * @return array<string|int, list<array<string, string>>>
+	 */
 	public static function convertProvider() : array
 	{
 		return [
@@ -170,6 +173,10 @@ class PurdyTest extends TestCase
 		];
 	}
 
+	/**
+	 * @param  array{value: string, expected: string} $args
+	 * @return void
+	 */
 	#[DataProvider('convertProvider')]
 	public function testConvert(array $args) : void
 	{
@@ -177,6 +184,9 @@ class PurdyTest extends TestCase
 		$this->assertSame($args['expected'], $output);
 	}
 
+	/**
+	 * @return array<string|int, list<array<string, string>>>
+	 */
 	public static function ampersandsProvider() : array
 	{
 		return [
@@ -207,6 +217,10 @@ class PurdyTest extends TestCase
 		];
 	}
 
+	/**
+	 * @param  array{value: string, expected: string} $args
+	 * @return void
+	 */
 	#[DataProvider('ampersandsProvider')]
 	public function testAmpersands(array $args) : void
 	{
@@ -214,6 +228,9 @@ class PurdyTest extends TestCase
 		$this->assertSame($args['expected'], $output);
 	}
 
+	/**
+	 * @return array<string|int, list<array<string, string>>>
+	 */
 	public static function sizesProvider() : array
 	{
 		return [
@@ -240,6 +257,10 @@ class PurdyTest extends TestCase
 		];
 	}
 
+	/**
+	 * @param  array{value: string, expected: string} $args
+	 * @return void
+	 */
 	#[DataProvider('sizesProvider')]
 	public function testSizes(array $args) : void
 	{
@@ -247,6 +268,9 @@ class PurdyTest extends TestCase
 		$this->assertSame($args['expected'], $output);
 	}
 
+	/**
+	 * @return array<string|int, list<array<string, string>>>
+	 */
 	public static function singleQuotesProvider() : array
 	{
 		return [
@@ -277,6 +301,10 @@ class PurdyTest extends TestCase
 		];
 	}
 
+	/**
+	 * @param  array{value: string, expected: string} $args
+	 * @return void
+	 */
 	#[DataProvider('singleQuotesProvider')]
 	public function testSingleQuotes(array $args) : void
 	{
@@ -284,6 +312,9 @@ class PurdyTest extends TestCase
 		$this->assertSame($args['expected'], $output);
 	}
 
+	/**
+	 * @return array<string|int, list<array<string, string>>>
+	 */
 	public static function ellipsesProvider() : array
 	{
 		return [
@@ -294,6 +325,10 @@ class PurdyTest extends TestCase
 		];
 	}
 
+	/**
+	 * @param  array{value: string, expected: string} $args
+	 * @return void
+	 */
 	#[DataProvider('ellipsesProvider')]
 	public function testEllipses(array $args) : void
 	{
@@ -301,6 +336,9 @@ class PurdyTest extends TestCase
 		$this->assertSame($args['expected'], $output);
 	}
 
+	/**
+	 * @return array<string|int, list<array<string, string>>>
+	 */
 	public static function fractionsProvider() : array
 	{
 		return [
@@ -331,6 +369,10 @@ class PurdyTest extends TestCase
 		];
 	}
 
+	/**
+	 * @param  array{value: string, expected: string} $args
+	 * @return void
+	 */
 	#[DataProvider('fractionsProvider')]
 	public function testFractions(array $args) : void
 	{
@@ -338,6 +380,9 @@ class PurdyTest extends TestCase
 		$this->assertSame($args['expected'], $output);
 	}
 
+	/**
+	 * @return array<string|int, list<array<string, string>>>
+	 */
 	public static function dashesProvider() : array
 	{
 		return [
@@ -368,6 +413,10 @@ class PurdyTest extends TestCase
 		];
 	}
 
+	/**
+	 * @param  array{value: string, expected: string} $args
+	 * @return void
+	 */
 	#[DataProvider('dashesProvider')]
 	public function testDashes(array $args) : void
 	{
@@ -375,6 +424,9 @@ class PurdyTest extends TestCase
 		$this->assertSame($args['expected'], $output);
 	}
 
+	/**
+	 * @return array<string|int, list<array<string, string>>>
+	 */
 	public static function quotesProvider() : array
 	{
 		return [
@@ -477,6 +529,10 @@ class PurdyTest extends TestCase
 		];
 	}
 
+	/**
+	 * @param  array{value: string, expected: string} $args
+	 * @return void
+	 */
 	#[DataProvider('quotesProvider')]
 	public function testQuotes(array $args) : void
 	{
