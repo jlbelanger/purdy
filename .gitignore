@@ -1,5 +1,6 @@
 .DS_Store
 .phpunit.result.cache
 *.log
+/node_modules
 /vendor
 TODO.md

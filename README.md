@@ -4,15 +4,15 @@ Purdy is a Composer package that adds HTML entities to text to make it look purd
 
 ## Features
 
-|Input|Output|
-|-----|------|
-|`Lorem "ipsum" dolor... 'sit' amet--consectetur & adipiscing elit.`|`Lorem &ldquo;ipsum&rdquo; dolor&hellip; &lsquo;sit&rsquo; amet&mdash;consectetur &amp; adipiscing elit.`|
-|`5 x 5`|`5 &times; 5`|
-|`5'3"`|`5&apos;3&quot;`|
-|`33 1/3`|`33 &frac13;`|
-|`pg. 1-2`|`pg. 1&ndash;2`|
-|`'60s Rock 'n' Roll`|`&rsquo;60s Rock &rsquo;n&rsquo; Roll`|
-|`Ain't Talkin' 'Bout Love`|`Ain&rsquo;t Talkin&rsquo; &rsquo;Bout Love`|
+| Input                                                               | Output                                                                                                    |
+| ------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `Lorem "ipsum" dolor... 'sit' amet--consectetur & adipiscing elit.` | `Lorem &ldquo;ipsum&rdquo; dolor&hellip; &lsquo;sit&rsquo; amet&mdash;consectetur &amp; adipiscing elit.` |
+| `5 x 5`                                                             | `5 &times; 5`                                                                                             |
+| `5'3"`                                                              | `5&apos;3&quot;`                                                                                          |
+| `33 1/3`                                                            | `33 &frac13;`                                                                                             |
+| `pg. 1-2`                                                           | `pg. 1&ndash;2`                                                                                           |
+| `'60s Rock 'n' Roll`                                                | `&rsquo;60s Rock &rsquo;n&rsquo; Roll`                                                                    |
+| `Ain't Talkin' 'Bout Love`                                          | `Ain&rsquo;t Talkin&rsquo; &rsquo;Bout Love`                                                              |
 
 ## Requirements
 
@@ -25,14 +25,14 @@ Purdy is a Composer package that adds HTML entities to text to make it look purd
 
 Run:
 
-``` bash
+```bash
 composer config repositories.purdy vcs git@github.com:jlbelanger/purdy.git
 composer require jlbelanger/purdy @dev
 ```
 
 ## Usage
 
-``` php
+```php
 \Jlbelanger\Purdy::convert('Lorem ipsum...');
 ```
 
@@ -46,7 +46,7 @@ composer require jlbelanger/purdy @dev
 
 ### Setup
 
-``` bash
+```bash
 git clone https://github.com/jlbelanger/purdy.git
 cd purdy
 composer install
@@ -54,12 +54,12 @@ composer install
 
 ### Lint
 
-``` bash
+```bash
 ./vendor/bin/phpcs
 ```
 
 ### Test
 
-``` bash
+```bash
 ./vendor/bin/phpunit
 ```
